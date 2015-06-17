@@ -1,10 +1,10 @@
-import { Component } from 'react';
+import React from 'react';
 
-export class IDCell extends Component {
+export class IDCell extends React.Component {
 
   render(){
     return (
-      <div style={this.props.style}>
+      <div className={this.props.cell} style={this.props.style}>
         <p>{this.props.data}</p>
       </div>
     );

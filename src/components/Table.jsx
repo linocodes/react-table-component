@@ -28,7 +28,7 @@ export class Table extends React.Component {
 
   renderRow(json){
     return (
-      <div style={styles.flexRow}>
+      <div className={'row'} style={styles.flexRow}>
       {
         Object.keys(json).map((key)=>{
           return this.renderCell(key, json);
@@ -45,7 +45,7 @@ export class Table extends React.Component {
     let style = this.props.schema[key].style
 
     return (
-      <Component data={data} style={style} />
+      <Component cell={key} data={data} style={style} />
     );
   }
 };
@@ -57,7 +57,7 @@ class Header extends React.Component {
     let schema = this.props.schema;
 
     return (
-      <div style={styles.header}>
+      <div className={'table-header'} style={styles.header}>
       {
         Object.keys(schema).map((key) => {
           return ( 

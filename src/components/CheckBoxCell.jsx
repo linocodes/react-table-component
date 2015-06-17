@@ -1,10 +1,10 @@
-import { Component } from 'react';
+import React from 'react';
 
-export class CheckBoxCell extends Component {
+export class CheckBoxCell extends React.Component {
 
   render(){
     return (
-      <div style={this.props.style}>
+      <div className={this.props.cell} style={this.props.style}>
         <input type='checkbox' checked={this.props.data}/>
       </div>
     );

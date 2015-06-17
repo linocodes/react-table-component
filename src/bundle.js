@@ -109,6 +109,8 @@
 	  return App;
 	})(_react2['default'].Component);
 
+	console.log(typeof App);
+
 	_react2['default'].render(_react2['default'].createElement(App, null), document.getElementById('app'));
 
 /***/ },
@@ -177,7 +179,7 @@
 
 	      return _react2['default'].createElement(
 	        'div',
-	        { style: styles.flexRow },
+	        { className: 'row', style: styles.flexRow },
 	        Object.keys(json).map(function (key) {
 	          return _this2.renderCell(key, json);
 	        })
@@ -191,7 +193,7 @@
 	      var data = json[key];
 	      var style = this.props.schema[key].style;
 
-	      return _react2['default'].createElement(Component, { data: data, style: style });
+	      return _react2['default'].createElement(Component, { cell: key, data: data, style: style });
 	    }
 	  }]);
 
@@ -220,7 +222,7 @@
 
 	      return _react2['default'].createElement(
 	        'div',
-	        { style: styles.header },
+	        { className: 'table-header', style: styles.header },
 	        Object.keys(schema).map(function (key) {
 	          return _react2['default'].createElement(
 	            'h4',
@@ -5812,6 +5814,7 @@
 	var _componentsCheckBoxCell = __webpack_require__(50);
 
 	var styles = _reactStyle2['default'].create({
+
 	  id: {
 	    flex: 0.2,
 	    marginRight: 5
@@ -5823,6 +5826,7 @@
 	  checkbox: {
 	    flex: 1.5
 	  }
+
 	});
 
 	var schema = {
@@ -5863,30 +5867,35 @@
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 	var _react = __webpack_require__(1);
 
-	var IDCell = (function (_Component) {
+	var _react2 = _interopRequireDefault(_react);
+
+	var IDCell = (function (_React$Component) {
 	  function IDCell() {
 	    _classCallCheck(this, IDCell);
 
-	    if (_Component != null) {
-	      _Component.apply(this, arguments);
+	    if (_React$Component != null) {
+	      _React$Component.apply(this, arguments);
 	    }
 	  }
 
-	  _inherits(IDCell, _Component);
+	  _inherits(IDCell, _React$Component);
 
 	  _createClass(IDCell, [{
 	    key: 'render',
 	    value: function render() {
-	      return React.createElement(
+	      console.log(this.props.key);
+	      return _react2['default'].createElement(
 	        'div',
-	        { style: this.props.style },
-	        React.createElement(
+	        { className: this.props.cell, style: this.props.style },
+	        _react2['default'].createElement(
 	          'p',
 	          null,
 	          this.props.data
@@ -5896,7 +5905,7 @@
 	  }]);
 
 	  return IDCell;
-	})(_react.Component);
+	})(_react2['default'].Component);
 
 	exports.IDCell = IDCell;
 
@@ -5912,30 +5921,34 @@
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 	var _react = __webpack_require__(1);
 
-	var TextCell = (function (_Component) {
+	var _react2 = _interopRequireDefault(_react);
+
+	var TextCell = (function (_React$Component) {
 	  function TextCell() {
 	    _classCallCheck(this, TextCell);
 
-	    if (_Component != null) {
-	      _Component.apply(this, arguments);
+	    if (_React$Component != null) {
+	      _React$Component.apply(this, arguments);
 	    }
 	  }
 
-	  _inherits(TextCell, _Component);
+	  _inherits(TextCell, _React$Component);
 
 	  _createClass(TextCell, [{
 	    key: 'render',
 	    value: function render() {
-	      return React.createElement(
+	      return _react2['default'].createElement(
 	        'div',
 	        { style: this.props.style },
-	        React.createElement(
+	        _react2['default'].createElement(
 	          'p',
 	          null,
 	          this.props.data
@@ -5945,7 +5958,7 @@
 	  }]);
 
 	  return TextCell;
-	})(_react.Component);
+	})(_react2['default'].Component);
 
 	exports.TextCell = TextCell;
 
@@ -5961,36 +5974,40 @@
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 	var _react = __webpack_require__(1);
 
-	var CheckBoxCell = (function (_Component) {
+	var _react2 = _interopRequireDefault(_react);
+
+	var CheckBoxCell = (function (_React$Component) {
 	  function CheckBoxCell() {
 	    _classCallCheck(this, CheckBoxCell);
 
-	    if (_Component != null) {
-	      _Component.apply(this, arguments);
+	    if (_React$Component != null) {
+	      _React$Component.apply(this, arguments);
 	    }
 	  }
 
-	  _inherits(CheckBoxCell, _Component);
+	  _inherits(CheckBoxCell, _React$Component);
 
 	  _createClass(CheckBoxCell, [{
 	    key: 'render',
 	    value: function render() {
-	      return React.createElement(
+	      return _react2['default'].createElement(
 	        'div',
 	        { style: this.props.style },
-	        React.createElement('input', { type: 'checkbox', checked: this.props.data })
+	        _react2['default'].createElement('input', { type: 'checkbox', checked: this.props.data })
 	      );
 	    }
 	  }]);
 
 	  return CheckBoxCell;
-	})(_react.Component);
+	})(_react2['default'].Component);
 
 	exports.CheckBoxCell = CheckBoxCell;
 

@@ -19,13 +19,13 @@ class App extends React.Component {
         this.setState({
           dataSource: json,
           loading: false
-        })
+        });
       });
   }
 
   render(){
     if (this.state.loading) {
-      return (<p>loading</p>);
+      return ( <p>loading</p> );
     }
 
     return (
