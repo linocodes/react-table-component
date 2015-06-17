@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var webpack = require('gulp-webpack');
 
 gulp.task('build', function() {
-  return gulp.src('./Table.jsx')
+  return gulp.src('./src/App.jsx')
     .pipe(
       webpack({
         output: {
@@ -24,9 +24,9 @@ gulp.task('build', function() {
           extensions: ['', '.js', '.jsx']
         }
       }))
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('./src/'));
 });
 
 gulp.task('watch', function() {
-  gulp.watch(['./Table.jsx'], ['build']);
+  gulp.watch(['*.jsx'], ['build']);
 });
