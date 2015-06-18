@@ -32,7 +32,9 @@ describe('Table', () => {
   );
 
   it('renders the number of rows equal to the number of data objects passed in', () => {
+
     let numRows = TestUtils.scryRenderedDOMComponentsWithClass(TableTest, 'row').length;
+
     expect(numRows).toEqual(2);
   });
 
@@ -47,4 +49,17 @@ describe('Table', () => {
     expect(numTitleCells).toEqual(2);
   });
 
+  it('renders properly headers according to schema object passed in', () => {
+
+    let headers = TestUtils.scryRenderedDOMComponentsWithClass(TableTest, 'table-header');
+    let first = headers[0].getDOMNode().children[0].textContent;
+    let second = headers[0].getDOMNode().children[1].textContent;
+    let third = headers[0].getDOMNode().children[2].textContent;
+    let fourth = headers[0].getDOMNode().children[3].textContent;
+
+    expect(first).toEqual('User ID');
+    expect(second).toEqual('Todo ID');
+    expect(third).toEqual('Note');
+    expect(fourth).toEqual('Completed');
+  });
 });

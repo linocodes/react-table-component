@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var webpack = require('gulp-webpack');
+var jest = require('gulp-jest');
+require('harmonize')()
 
 gulp.task('build', function() {
   return gulp.src('./src/App.jsx')
@@ -27,6 +29,26 @@ gulp.task('build', function() {
     .pipe(gulp.dest('./src/'));
 });
 
+gulp.task('jest', function () {
+  return gulp.src('__tests__').pipe(jest({
+    "scriptPreprocessor": "../node_modules/babel-jest",
+    "testFileExtensions": [
+      "es6",
+      "js",
+      "jsx"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6",
+      "jsx"
+    ],
+    "unmockedModulePathPatterns": [
+      "react"
+    ]
+  }));
+});
+
 gulp.task('watch', function() {
-  gulp.watch(['*.jsx'], ['build']);
+  gulp.watch(['*.jsx', '__tests__/*.js'], ['build', 'jest']);
 });

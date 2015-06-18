@@ -21,7 +21,7 @@ export class Table extends React.Component {
             return this.renderRow(json);
           })
         }
-        
+
       </div>
     );
   }
@@ -42,7 +42,7 @@ export class Table extends React.Component {
 
     let Component = this.props.schema[key].component;
     let data = json[key];
-    let style = this.props.schema[key].style
+    let style = this.props.schema[key].style;
 
     return (
       <Component cell={key} data={data} style={style} />
