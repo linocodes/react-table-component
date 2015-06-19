@@ -1,3 +1,5 @@
+// @flow
+
 import StyleSheet from 'react-style';
 import { IDCell } from './components/IDCell';
 import { TextCell } from './components/TextCell';
@@ -43,6 +45,3 @@ export const schema = {
   }
 
 };
-
-
-

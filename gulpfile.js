@@ -1,33 +1,8 @@
 var gulp = require('gulp');
 var webpack = require('gulp-webpack');
 var jest = require('gulp-jest');
-require('harmonize')()
-
-gulp.task('build', function() {
-  return gulp.src('./src/App.jsx')
-    .pipe(
-      webpack({
-        output: {
-          filename: 'bundle.js'
-        },
-        module: {
-          loaders: [
-            {
-              test: /\.jsx?$/,
-              exclude: /(node_modules|bower_components)/,
-              loaders: ['jsx-loader?insertPragma=React.DOM&harmony', 'babel']
-            }
-          ]
-        },
-        externals: {
-          'react': 'React'
-        },
-        resolve: {
-          extensions: ['', '.js', '.jsx']
-        }
-      }))
-    .pipe(gulp.dest('./src/'));
-});
+var eslint = require('gulp-eslint');
+require('harmonize')();
 
 gulp.task('jest', function () {
   return gulp.src('__tests__').pipe(jest({
@@ -48,6 +23,25 @@ gulp.task('jest', function () {
     ]
   }));
 });
+
+gulp.task('lint', function(){
+  return gulp.src('./src/**/*.js*')
+    .pipe(eslint({
+      globals: {
+      "require": true
+      },
+      envs: {
+        browser: true,
+        es6: true
+      },
+      rules: {
+        "quotes": [2, "single", "avoid-escape"],
+        "no-console": 0
+      }
+    }))
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError());
+})
 
 gulp.task('watch', function() {
   gulp.watch(['*.jsx', '__tests__/*.js'], ['build', 'jest']);

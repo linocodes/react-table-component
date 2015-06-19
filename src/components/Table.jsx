@@ -4,12 +4,17 @@ import StyleSheet from 'react-style';
 export class Table extends React.Component {
 
   constructor(){
+
     super();
+
     this.renderRow = this.renderRow.bind(this);
     this.renderCell = this.renderCell.bind(this);
   }
 
   render(){
+
+    let rows = 0;
+
     return (
       <div style={styles.table}>
         <Header schema={this.props.schema} />
@@ -18,7 +23,7 @@ export class Table extends React.Component {
 
         {
           this.props.data.map( (json) => {
-            return this.renderRow(json);
+            return this.renderRow(json, rows++);
           })
         }
 
@@ -26,9 +31,9 @@ export class Table extends React.Component {
     );
   }
 
-  renderRow(json){
+  renderRow(json, rowID){
     return (
-      <div className={'row'} style={styles.flexRow}>
+      <div key={rowID} className={'row'} style={styles.flexRow}>
       {
         Object.keys(json).map((key)=>{
           return this.renderCell(key, json);
@@ -39,16 +44,24 @@ export class Table extends React.Component {
   }
 
   renderCell(key, json){
-
     let Component = this.props.schema[key].component;
     let data = json[key];
     let style = this.props.schema[key].style;
 
     return (
-      <Component cell={key} data={data} style={style} />
+      <Component key={key} cell={key} data={data} style={style} />
     );
   }
 };
+
+/* Table Class Statics */
+
+Table.propTypes = {
+  data:  React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  schema: React.PropTypes.object.isRequired
+};
+
+/**-------------------**/
 
 class Header extends React.Component {
 
@@ -60,10 +73,10 @@ class Header extends React.Component {
       <div className={'table-header'} style={styles.header}>
       {
         Object.keys(schema).map((key) => {
-          return ( 
-            <h4 style={schema[key].style}>
+          return (
+            <h4 key={key} style={schema[key].style}>
             {schema[key].header}
-            </h4> 
+            </h4>
           );
         })
       }
@@ -79,18 +92,18 @@ let styles = StyleSheet.create({
     margin: 50
   },
   flexRow: {
-    display: 'flex', 
-    flexDirection: 'row', 
+    display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'baseline'
   },
   header: {
-    display: 'flex', 
+    display: 'flex',
     flexDirection: 'row', 
     justifyContent: 'flex-start'
   },
   flexStart: {
-   display: 'flex', 
+   display: 'flex',
    justifyContent: 'flex-start',
   }
 });
