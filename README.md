@@ -1,6 +1,6 @@
-# simple-react-table
+# react-table-component
 
-A simple React Table component.
+A generic React Table component.
 
 ## Table
 
